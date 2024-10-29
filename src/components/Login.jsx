@@ -1,17 +1,43 @@
+import { useState } from "react"
+import Header from "./Header"
+
 const Login=()=>{
+    const [isSignedIn,setIsSignedIn]=useState(true)
+
+    const toggleSignedIN=()=>{
+        setIsSignedIn(!isSignedIn)
+    }
     return(
-        <form className="text-center bg-zinc-800 w-6/12 m-auto">
-            <label className="text-white text-2xl font-bold">Sign In</label>
-            <div className="mb-4">
-                <input className="bg-slate-600 rounded-lg" type="email" placeholder="Email or phone"/>
+        <>
+        <div>
+            <Header/>
+            <div className="absolute">
+                <img src="https://assets.nflxext.com/ffe/siteui/vlv3/74d734ca-0eab-4cd9-871f-bca01823d872/web/IN-en-20241021-TRIFECTA-perspective_2277eb50-9da3-4fdf-adbe-74db0e9ee2cf_small.jpg"/>
             </div>
-            <div>
-                <input  className="bg-slate-600 rounded-lg" type="password" placeholder="password"/>
-            </div>
-            <div>
-                <button className="bg-rose-700 text-white p-2 m-2 w-44 rounded-lg">Sign In</button>
-            </div>
+
+        </div>
+       
+        <form className=" absolute p-12 bg-black bg-opacity-75 w-3/12 my-32 mx-auto right-0 left-0 rounded-lg">
+        <h1 className="text-white font-bold py-4 text-3xl">{isSignedIn ? "Sign In": "Sign Up"}</h1>
+            
+
+            {!isSignedIn && <input className="bg-gray-700 rounded-lg my-4 py-2 w-full" type="text" placeholder="Full name"/>}
+           
+                <input className="bg-gray-700 rounded-lg my-4 py-2 w-full" type="email" placeholder="Email or phone"/>
+          
+            
+                <input  className="bg-gray-700 rounded-lg my-4 py-2 w-full" type="password" placeholder="password"/>
+                {!isSignedIn && <input className="bg-gray-700 rounded-lg my-4 py-2 w-full" type="password" placeholder="Re-type password"/>}
+          
+         
+                <button className="bg-red-700 text-white py-2 my-6 w-full rounded-lg" >{isSignedIn ? "Sign In": "Sign Up"}</button>
+                <p className="my-3 text-white cursor-pointer" onClick={toggleSignedIN}>{isSignedIn ? "New to Netflix? Sign up now": "Already a user please sign In"}</p>
+           
+           
         </form>
+        
+       
+        </>
     )
 }
 export default Login
